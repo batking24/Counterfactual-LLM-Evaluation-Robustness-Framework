@@ -8,8 +8,10 @@ def init_db():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+    # For clean testing across iterations, drop old table
+    cursor.execute('DROP TABLE IF EXISTS eval_runs')
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS eval_runs (
+        CREATE TABLE eval_runs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             query TEXT,
             answer TEXT,
@@ -18,6 +20,9 @@ def init_db():
             is_supported BOOLEAN,
             consistency_score REAL,
             hit_rate REAL,
+            attribution_score REAL,
+            hallucinated_claims INTEGER,
+            safety_score REAL,
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -29,8 +34,8 @@ def log_eval_run(record: dict):
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO eval_runs 
-        (query, answer, retrieved_context, grounding_score, is_supported, consistency_score, hit_rate)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        (query, answer, retrieved_context, grounding_score, is_supported, consistency_score, hit_rate, attribution_score, hallucinated_claims, safety_score)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         record.get("query"),
         record.get("answer"),
@@ -38,7 +43,10 @@ def log_eval_run(record: dict):
         record.get("grounding_score", 0.0),
         record.get("is_supported", False),
         record.get("consistency_score", 0.0),
-        record.get("hit_rate", 0.0)
+        record.get("hit_rate", 0.0),
+        record.get("attribution_score", 0.0),
+        record.get("hallucinated_claims", 0),
+        record.get("safety_score", 0.0)
     ))
     conn.commit()
     conn.close()
