@@ -1,0 +1,14 @@
+[
+  {
+    "id": "doc_company_policy_01",
+    "text": "Acme Corp allows employees up to 20 days of paid time off (PTO) per year. Unused PTO does not roll over to the next year. Employees must request PTO at least two weeks in advance for any leave exceeding 3 days."
+  },
+  {
+    "id": "doc_company_product_01",
+    "text": "The SuperWidget 2000 features a titanium casing, 8 hours of battery life, and waterproof capability up to 50 meters. It supports Bluetooth 5.0 and Wi-Fi 6."
+  },
+  {
+    "id": "doc_company_history_01",
+    "text": "Acme Corp was founded in 1985 by Jane Doe and John Smith in their garage in Seattle. The company originally sold typewriter ribbons before pivoting to consumer electronics in 1998."
+  }
+]
