@@ -65,15 +65,23 @@ The framework was benchmarked across 5 heterogeneous semantic domains using opti
 
 ## Algorithmic Definitions
 
-### 1. Grounding Score ($G$)
-The Grounding Score is defined as the ratio of supported atomic claims ($C_s$) to total generated claims ($C_t$):
-$$G = \frac{\sum_{i=1}^{n} \text{is\_supported}(C_i)}{n}$$
-where $n$ is the cardinality of the claim set.
+### 1. Grounding Score (G)
+The Grounding Score quantifies the ratio of supported atomic claims to total generated claims:
 
-### 2. Reliability Index ($\rho$)
+```
+G = (number of supported claims) / (total claims)
+```
+
+Each generated answer is decomposed into atomic claims. A claim is marked **Supported** if the LLM-Judge determines it is directly attributable to the retrieved context. The final score is the fraction of supported claims, ranging from 0.0 (fully hallucinated) to 1.0 (fully grounded).
+
+### 2. Reliability Index
 A weighted composite metric evaluating the stability of the model across varying context densities:
-$$\rho = \alpha \cdot G + (1 - \alpha) \cdot H$$
-where $H$ is the Retrieval Hit Rate and $\alpha$ is the grounding weight (default $\alpha = 0.7$).
+
+```
+Reliability = 0.7 * Grounding + 0.3 * HitRate
+```
+
+where **Grounding** is the score defined above and **HitRate** measures retrieval recall (whether the gold-truth context was present in the top-k retrieved chunks). The weighting prioritizes factual accuracy (70%) over retrieval coverage (30%).
 
 ## Implementation & Quickstart
 
