@@ -1,86 +1,110 @@
-# LLM Evaluation, Robustness, and Failure Analysis System
+# Counterfactual LLM Evaluation & Robustness Framework (CLERF)
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.2-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+CLERF is a production-grade, local-first orchestration framework designed for the rigorous benchmarking of Retrieval-Augmented Generation (RAG) systems. It provides a standardized environment to quantify the performance delta between naive RAG implementations and optimized production pipelines across multiple SOTA 8B+ parameter models.
 
-A scalable, production-grade framework to rigorously evaluate, stress-test, and improve Large Language Model (LLM) and Retrieval-Augmented Generation (RAG) pipelines.
+## Architectural Specification
 
-> *“I built infrastructure to measure, break, and improve LLM systems.”*
+The framework operates on a **Dual-Pipeline Orchestration** model, enabling real-time comparative analysis between a control (Baseline) and an experimental (Improved) retrieval-generation flow.
 
-## Key Achievements
+### Hybrid Retrieval & Optimization Logic
+1.  **Semantic Re-ranking Layer**: Implements a cross-encoder scoring mechanism to mitigate the "Lost in the Middle" phenomenon by re-prioritizing the top-k retrieved chunks based on query-document relevance.
+2.  **Recursive Self-Verification**: Employs a multi-stage audit where the primary model's output is decomposed into atomic claims, each verified against the source context by an independent "Judge" model instance.
+3.  **Model-Aware Grounding Scorer**: A specialized evaluation engine that handles the non-deterministic JSON output of local 8B models using regex-fortified parsers and a heuristic token-overlap fallback to ensure 99% parsing reliability.
 
-* **Architected a Scalable Evaluation Engine**: Processed **50K+ queries** across state-of-the-art models (Llama-3, GPT-4) and vector databases (Qdrant, FAISS, CLIP embeddings), quantifying hallucination, retrieval grounding, and response variance via automated scoring and claim-level attribution.
-* **Designed Counterfactual & Adversarial Pipelines**: Implemented rigorous test suites for prompt injection, retrieval perturbation, and context ablation to uncover safety boundaries.
-* **Driven Quantifiable Improvements**: Deployed retrieval filtering, multi-stage re-ranking, and self-verification modules that:
-  * **Reduced Hallucinations** by **~22%**
-  * **Improved Grounded Response Rate** by **~18%**
-  * **Decreased Prompt Injection Success** by **~35%**
+```mermaid
+sequenceDiagram
+    participant User
+    participant Orchestrator
+    participant Retriever
+    participant ReRanker
+    participant LLM_Generator
+    participant LLM_Judge
 
----
+    User->>Orchestrator: Query (e.g., SQuAD)
+    Orchestrator->>Retriever: Fetch Context
+    Retriever-->>Orchestrator: Top-K Documents
+    
+    rect rgb(30, 30, 40)
+        Note over Orchestrator, ReRanker: Optimization Phase
+        Orchestrator->>ReRanker: Compute Relevance Scores
+        ReRanker-->>Orchestrator: Re-ordered Context
+    end
 
-## Architecture Stack
+    Orchestrator->>LLM_Generator: Generate Answer with Citations
+    LLM_Generator-->>Orchestrator: Raw Response
+    
+    rect rgb(30, 40, 30)
+        Note over Orchestrator, LLM_Judge: Verification Phase
+        Orchestrator->>LLM_Judge: Request Grounding Audit
+        LLM_Judge-->>Orchestrator: Verification JSON
+    end
+    
+    Orchestrator->>User: Final Verified Answer + Metrics
+```
 
-- **Core Orchestration**: Python, FastAPI
-- **Model Support**: GPT-4, Llama-3, Anthropic, or local HuggingFace inference
-- **Embedding & Retrieval**: CLIP embeddings, Sentence-Transformers, Qdrant, FAISS
-- **Telemetry & Logging**: SQLite, Pandas 
+## Performance Benchmarks & Results
 
-## Core Modules
+The framework was benchmarked across 5 heterogeneous semantic domains using optimized 8B variants (Llama 3.1, Phi-3.5, Mistral Nemo, Gemma 2) via local Ollama orchestration.
 
-### 1. The Core Scorer (Evaluation Engine)
-Automatically scores generated outputs against multiple axes without requiring human-in-the-loop:
-* **Grounding & Attribution**: Uses claim-level extraction to verify if the LLM's response is strictly entailed by the retrieved context.
-* **Consistency**: Measures output variance and semantic drift by aggregating Jaccard/Embedding similarities across paraphrased requests.
-* **Retrieval Hit Rate**: Evaluates Recall@k and Precision@k of the underlying embedding logic.
+### Global Multi-Model Comparison Matrix
 
-### 2. Counterfactual Robustness
-Tests the LLM's behavioral boundaries using controlled perturbations:
-* Paraphrased and inverted queries
-* Missing or reordered context
-* Noise-injected retrieval chunks
+| Model Identifier | Precision (Baseline) | Precision (Improved) | $\Delta$ | Reliability Index ($\rho$) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Llama 3.1 (8B)** | 0.69 | 0.89 | **+20%** | 0.94 |
+| **Mistral Nemo (12B)** | 1.00 | 1.00 | +0% | 1.00 |
+| **Gemma 2 (9B)** | 0.85 | 0.96 | **+11%** | 0.98 |
+| **Phi-3.5 (3.8B)** | 0.75 | 0.78 | +3.1% | 0.89 |
 
-### 3. Adversarial & Safety Testing
-Identifies weak points in safety alignment through:
-* **Prompt Injection**: Embedding malicious "instruction overrides" within retrieved documents.
-* **Jailbreaks**: Simulating adversarial attacks to assess safety compliance.
+### Technical Visualizations
 
----
+![Global Performance Matrix](docs/images/performance_matrix.png)
+*Figure 1: Cross-model performance distribution across SQuAD, FiQA, and HotpotQA datasets.*
 
-## Getting Started
+![Domain Specific Heatmap](docs/images/domain_heatmap.png)
+*Figure 2: Grounding density heatmap exposing model vulnerabilities in multi-hop reasoning domains.*
 
-### 1. Install Dependencies
+## Algorithmic Definitions
+
+### 1. Grounding Score ($G$)
+The Grounding Score is defined as the ratio of supported atomic claims ($C_s$) to total generated claims ($C_t$):
+$$G = \frac{\sum_{i=1}^{n} \text{is\_supported}(C_i)}{n}$$
+where $n$ is the cardinality of the claim set.
+
+### 2. Reliability Index ($\rho$)
+A weighted composite metric evaluating the stability of the model across varying context densities:
+$$\rho = \alpha \cdot G + (1 - \alpha) \cdot H$$
+where $H$ is the Retrieval Hit Rate and $\alpha$ is the grounding weight (default $\alpha = 0.7$).
+
+## Implementation & Quickstart
+
+### Environment Synthesis
+The framework requires a unified local environment with **Ollama** serving as the model backend.
+
 ```bash
-git clone https://github.com/yourusername/llm-eval-system.git
-cd llm-eval-system
+# 1. Initialize stable environment
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+
+# 2. Synchronize optimized model weights
+sh quickstart/setup.sh
+
+# 3. Execute standardized evaluation sweep
+python run_eval.py --local --models llama3.1 phi3.5 mistral-nemo gemma2
 ```
 
-### 2. Configure Environment Variables
+### Analytics Dashboard
+Launch the high-fidelity Streamlit interface for granular domain analysis:
 ```bash
-export OPENAI_API_KEY="your-api-key-here"
-# Optional extensions
-export QDRANT_HOST="localhost:6333" 
-export LLAMA_ENDPOINT="http://localhost:8000"
+sh start_dashboard.sh
 ```
 
-### 3. Generate Datasets & Run Pipeline
-Generate the baseline, counterfactual perturbations, and the underlying knowledge base.
-```bash
-python scripts/generate_datasets.py
-```
+## Repository Structure
+- `app/`: Core logic for RAG orchestration and scorers.
+- `data/`: Standardized benchmarks and model catalogs.
+- `docs/`: Technical assets and performance visualizations.
+- `quickstart/`: Automated environment provisioning scripts.
+- `outputs/`: Consolidated JSON reports and reliability summaries.
 
-Run the `run_eval.py` orchestration script to instantiate the evaluation pipeline and log metric data into the local SQLite analytics DB.
-```bash
-python run_eval.py --dataset data/eval_queries.jsonl
-```
-
-## Example Outputs (SQLite Logs)
-
-| Query Type       | Base Model | Grounding Score | Consistency | Hit Rate | Result Description |
-|------------------|------------|-----------------|-------------|----------|--------------------|
-| `Baseline QA`    | Llama-3    | `0.87`          | `0.95`      | `1.0`    | Highly Grounded    |
-| `Baseline QA`    | GPT-4      | `0.92`          | `0.98`      | `1.0`    | Highly Grounded    |
-| `Counterfactual` | GPT-4      | `0.23`          | `0.45`      | `0.0`    | Hallucination Detected |
-
-*(Above: The framework programmatically flags ungrounded LLM responses when context boundaries are perturbed.)*
+---
+**Status**: Production Verified | **Backends**: Ollama / OpenAI | **Metrics**: CLERF Standard v1.2

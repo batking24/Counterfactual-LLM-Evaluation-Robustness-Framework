@@ -1,0 +1,134 @@
+{
+    "SQuAD": {
+        "description": "General Wikipedia Question Answering",
+        "sota_targets": {
+            "grounding": 0.92,
+            "hit_rate": 0.95
+        },
+        "corpus": [
+            {
+                "id": "s1",
+                "text": "The Eiffel Tower is located in Paris, France and was designed by Gustave Eiffel."
+            },
+            {
+                "id": "s2",
+                "text": "The Great Wall of China is a series of fortifications built across the historical northern borders of China."
+            }
+        ],
+        "queries": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "reference_doc_ids": [
+                    "s1"
+                ],
+                "category": "Factual"
+            }
+        ]
+    },
+    "FiQA": {
+        "description": "Financial Domain Knowledge",
+        "sota_targets": {
+            "grounding": 0.85,
+            "hit_rate": 0.88
+        },
+        "corpus": [
+            {
+                "id": "f1",
+                "text": "A bull market is a market that is on the rise and where the economy is sound."
+            },
+            {
+                "id": "f2",
+                "text": "A bear market is one that is receding, where most stocks are declining in value."
+            }
+        ],
+        "queries": [
+            {
+                "query": "What is a bear market?",
+                "reference_doc_ids": [
+                    "f2"
+                ],
+                "category": "Finance"
+            }
+        ]
+    },
+    "NQ": {
+        "description": "Natural Google Search Questions",
+        "sota_targets": {
+            "grounding": 0.88,
+            "hit_rate": 0.92
+        },
+        "corpus": [
+            {
+                "id": "n1",
+                "text": "The moon's diameter is about 3,474 kilometers, roughly one-fourth that of Earth."
+            },
+            {
+                "id": "n2",
+                "text": "Tides are the rise and fall of sea levels caused by the combined effects of the gravitational forces."
+            }
+        ],
+        "queries": [
+            {
+                "query": "What is the diameter of the moon?",
+                "reference_doc_ids": [
+                    "n1"
+                ],
+                "category": "Search"
+            }
+        ]
+    },
+    "HotpotQA": {
+        "description": "Multi-hop Reasoning over Wikipedia",
+        "sota_targets": {
+            "grounding": 0.82,
+            "hit_rate": 0.85
+        },
+        "corpus": [
+            {
+                "id": "h1",
+                "text": "Leonardo da Vinci painted the Mona Lisa."
+            },
+            {
+                "id": "h2",
+                "text": "The Mona Lisa is exhibited in the Louvre Museum in Paris."
+            }
+        ],
+        "queries": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "reference_doc_ids": [
+                    "h1",
+                    "h2"
+                ],
+                "category": "Multi-hop"
+            }
+        ]
+    },
+    "Climate-FEVER": {
+        "description": "Fact-checking and Climate Verification",
+        "sota_targets": {
+            "grounding": 0.9,
+            "hit_rate": 0.94
+        },
+        "corpus": [
+            {
+                "id": "c1",
+                "text": "Global warming is the unusually rapid increase in Earth\u2019s average surface temperature."
+            },
+            {
+                "id": "c2",
+                "text": "Methane is a potent greenhouse gas that contributes to climate change."
+            }
+        ],
+        "queries": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "reference_doc_ids": [
+                    "c1",
+                    "c2"
+                ],
+                "category": "Safety/Fact-check"
+            }
+        ]
+    }
+}

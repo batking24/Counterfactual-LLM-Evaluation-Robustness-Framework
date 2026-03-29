@@ -1,19 +1,21 @@
+from typing import List, Dict, Any
+
 class RetrievalScorer:
-    """Evaluates retrieval quality (e.g., hit rate) against ground truth references."""
+    """Evaluates retrieval quality (Recall, Hit Rate)."""
     
-    def score(self, retrieved_docs: list, reference_doc_ids: list) -> dict:
-        if not reference_doc_ids:
-            return {"hit_rate": 0.0, "precision": 0.0, "recall": 0.0}
+    def score(self, retrieved_docs: List[Dict[str, Any]], reference_ids: List[str]) -> dict:
+        """Compute hit rate and recall."""
+        if not reference_ids:
+            return {"hit_rate": 1.0, "recall": 1.0}
             
         retrieved_ids = [doc.get("id") for doc in retrieved_docs]
-        hits = set(retrieved_ids).intersection(set(reference_doc_ids))
+        hits = [ref_id for ref_id in reference_ids if ref_id in retrieved_ids]
         
         hit_rate = 1.0 if len(hits) > 0 else 0.0
-        precision = len(hits) / len(retrieved_ids) if retrieved_ids else 0.0
-        recall = len(hits) / len(reference_doc_ids)
+        recall = len(hits) / len(reference_ids)
         
         return {
             "hit_rate": hit_rate,
-            "precision": round(precision, 2),
-            "recall": round(recall, 2)
+            "recall": round(recall, 2),
+            "num_hits": len(hits)
         }

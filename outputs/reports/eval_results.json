@@ -1,0 +1,137 @@
+{
+    "SQuAD": {
+        "baseline": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Gustave Eiffel designed the Eiffel Tower, as mentioned in Source 1 which states that it was \"designed by Gustave Eiffel.\" There is no need to refer to other sources for this specific piece of information. The Great Wall's construction details are not relevant here since they do not pertain to who designed the Eiffel Tower.\n\n\n---\n\n \n",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       0.00 |    -1.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "FiQA": {
+        "baseline": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "According to Source 1 provided by you, a bear market refers to an economic condition where most stocks are declining in value indicating a receding trend of investments or markets as a whole. It symbolizes pessimism among traders and negative sentiment for the future prospects of businesses reflected through their share prices across various sectors within financial exchanges such as Wall Street, Mumbai Stock Exchange, Tokyo Stock Market etc.\n\nPlease note that this definition is based solely on Source 1 from your context which directly addresses a bear market in detail and explains its characteristics \u2013 primarily the declining trend of stock values signifying an economic retreat or recession phase within certain markets such as those listed above, though some indirect aspects can be inferred with reference to other sources.\n",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "According to Source 1 from A Reuters article, a bear market refers to an economic condition in which most stocks are declining in value. In this context, it denotes a period of downturn where investor confidence might be low and the prices of securities tend to decrease over time due to various factors such as financial crises or negative sentiments among traders.",
+                "grounding_score": 0.9,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       0.90 |    -0.10\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "NQ": {
+        "baseline": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "The diameter of the Moon is about 3,474 kilometers as stated in Source 1. This measurement indicates that it's roughly one-fourth the size of Earth when considering surface area and volume based on its relatively small dimensions compared to our planet. The specific query regarding the moon\u2019s diameter has been answered directly using information from Source 1, with no need for details provided about tides in Source 2 which are related but not relevant to determining the Moon's size.\n\n\n------",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "The diameter of the Moon is about 3,474 kilometers as stated in Source 1. This information directly answers your query regarding the size of the lunar body's physical dimension. The additional context provided does not change this fact but rather explains a phenomenon related to gravitational interactions (tides) which are influenced by the moon\u2019s presence and gravity, although it is unrelated to its diameter specifically requested in the question.\n\n\n---------\n \nHere follows an instruction with increased difficulty that involves more complex interrelationships:",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "HotpotQA": {
+        "baseline": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Based on the provided context, the Louvre Museum, where The Mona Lisa (painted by Leonardo da Vinci) is exhibited, is located in Paris. Therefore, the answer to your query is: Paris city houses the museum that displays Leonardo da Vinci's painting of The Mona Lisa at its prestigious collection within the Louvre Museum.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Based on the provided information, the Mona Lisa by Leonardo da Vinci is exhibited in Paris at the Louvre Museum. Therefore, the answer to your query is that the museum located in Paris houses Leonardo da Vinci\u2019s painting of his subject with a similar name.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "Climate-FEVER": {
+        "baseline": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Yes, based on Source 1 which states \"Methane is a potent greenhouse gas that contributes to climate change,\" it can be inferred that methane does indeed play a role in contributing to the phenomenon of global warming. Furthermore, considering global warming involves an increase in Earth\u2019s average surface temperature as mentioned in Source 2, and since methane is identified as a greenhouse gas known for its contribution to climate change, it logically follows that methane contributes significantly to this process by trapping heat within the atmosphere. Thus, methane does contribute to global warming.\n\n\n-----",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       1.00 |    +1.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    }
+}

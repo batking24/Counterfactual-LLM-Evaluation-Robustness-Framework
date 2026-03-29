@@ -1,0 +1,137 @@
+{
+    "SQuAD": {
+        "baseline": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Gustave Eiffel designed the Eiffel Tower.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Gustave Eiffel",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "FiQA": {
+        "baseline": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "A bear market is one that is receding, where most stocks are declining in value.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "A bear market is one that is receding, where most stocks are declining in value.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "NQ": {
+        "baseline": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "Based on Source 1, the diameter of the moon is approximately 3,474 kilometers.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "Based on Source 1, the diameter of the moon is approximately 3,474 kilometers.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "HotpotQA": {
+        "baseline": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Based on the provided context, the Mona Lisa is housed at the Louvre Museum in Paris.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Paris",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "Climate-FEVER": {
+        "baseline": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Yes, methane does contribute to global warming. It's stated in Source 1 that \"methane is a potent greenhouse gas that contributes to climate change,\" and since global warming is an aspect of climate change (as mentioned in Source 2), methane contributes to global warming as well.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Yes, methane does contribute to global warming. According to Source 1, \"Methane is a potent greenhouse gas that contributes to climate change,\" and Source 2 states, \"Global warming is the unusually rapid increase in Earth\u2019s average surface temperature.\" Therefore, it can be inferred that methane contributes to global warming by being a greenhouse gas that traps heat in the atmosphere.",
+                "grounding_score": 1.0,
+                "is_supported": true,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       1.00 |       1.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 0 (0.0%)\n- Retrieval Misses: 0 (0.0%)"
+    }
+}

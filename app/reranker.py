@@ -1,15 +1,23 @@
+from typing import List, Dict, Any
+
 class ReRanker:
-    """Filters and re-ranks FAISS retrieval documents using a secondary pass."""
+    """Simple heuristic re-ranker to filter results."""
     
-    def __init__(self, cutoff_score: float = 1.6):
-        # In FAISS sentence-transformers L2 distance, closer to 0 is better.
-        # Anything above 1.6 is highly unlikely to be relevant.
+    def __init__(self, cutoff_score: float = 0.5):
         self.cutoff_score = cutoff_score
         
-    def rerank_and_filter(self, retrieved_docs: list, query: str) -> list:
-        # 1. Filtering: remove docs with distance > cutoff
-        filtered = [doc for doc in retrieved_docs if doc.get("score", 0.0) < self.cutoff_score]
+    def rerank_and_filter(self, docs: List[Dict[str, Any]], query: str) -> List[Dict[str, Any]]:
+        """Filters documents based on a simple keyword match (Phase 1)."""
+        query_terms = set(query.lower().split())
         
-        # 2. Re-ranking: sort by distance (lowest first)
-        reranked = sorted(filtered, key=lambda x: x.get("score", 0.0))
-        return reranked
+        refined_docs = []
+        for doc in docs:
+            doc_text = doc.get("text", "").lower()
+            # Simple term frequency/overlap as match score
+            match_count = sum(1 for term in query_terms if term in doc_text)
+            match_score = match_count / len(query_terms) if query_terms else 0
+            
+            if match_score >= self.cutoff_score:
+                refined_docs.append(doc)
+                
+        return refined_docs

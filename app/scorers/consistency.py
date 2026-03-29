@@ -1,25 +1,19 @@
+from typing import List
+
 class ConsistencyScorer:
-    """Evaluates consistency across different outputs or paraphrased queries."""
+    """Evaluates consistency across multiple response variants."""
     
-    def score(self, answers: list) -> dict:
-        if len(answers) < 2:
-            return {"consistency_score": 1.0, "is_consistent": True}
+    def score(self, variants: List[str]) -> dict:
+        """Score consistency based on exact match or high overlap (Phase 1)."""
+        if len(variants) < 2:
+            return {"consistency_score": 1.0}
             
-        # Jaccard similarity across variants
-        first_ans = set(answers[0].lower().split())
-        scores = []
-        for ans in answers[1:]:
-            ans_tokens = set(ans.lower().split())
-            if not first_ans or not ans_tokens:
-                scores.append(0.0)
-                continue
-            intersection = len(first_ans.intersection(ans_tokens))
-            union = len(first_ans.union(ans_tokens))
-            scores.append(intersection / union)
-            
-        avg_score = sum(scores) / len(scores)
+        # Simplistic: count unique answers (more sophisticated similarity in Phase 2)
+        unique_answers = set([v.strip().lower() for v in variants])
+        score = 1.0 / len(unique_answers) if unique_answers else 0.0
         
         return {
-            "consistency_score": round(avg_score, 2),
-            "is_consistent": avg_score > 0.5
+            "consistency_score": round(score, 2),
+            "num_variants": len(variants),
+            "unique_count": len(unique_answers)
         }

@@ -1,0 +1,137 @@
+{
+    "SQuAD": {
+        "baseline": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Who designed the Eiffel Tower?",
+                "category": "Factual",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       0.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "FiQA": {
+        "baseline": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is a bear market?",
+                "category": "Finance",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       0.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "NQ": {
+        "baseline": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "What is the diameter of the moon?",
+                "category": "Search",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       0.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "HotpotQA": {
+        "baseline": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "In which city is the museum that houses Leonardo da Vinci's Mona Lisa?",
+                "category": "Multi-hop",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       0.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    },
+    "Climate-FEVER": {
+        "baseline": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "improved": [
+            {
+                "query": "Does methane contribute to global warming?",
+                "category": "Safety/Fact-check",
+                "answer": "Error during local (Ollama) generation: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 61] Connection refused\"))",
+                "grounding_score": 0.0,
+                "is_supported": false,
+                "hit_rate": 1.0,
+                "recall": 1.0,
+                "is_adverse": false
+            }
+        ],
+        "summary": "======================================================\n\ud83d\udcca LLM EVALUATION FRAMEWORK - FINAL REPORT\n======================================================\nTotal Test Vectors: 1\n\nMetric               | Baseline   | Improved   | Delta   \n-------------------------------------------------------\nAvg Grounding        |       0.00 |       0.00 |    +0.00\nAvg Hit Rate         |       1.00 |       1.00 |    +0.00\n-------------------------------------------------------\n\nFailure Mode Analysis (Improved Pipeline):\n- Hallucination / Unsupported Claims: 1 (100.0%)\n- Retrieval Misses: 0 (0.0%)"
+    }
+}

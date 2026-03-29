@@ -1,14 +1,18 @@
 [
-  {
-    "id": "doc_company_policy_01",
-    "text": "Acme Corp allows employees up to 20 days of paid time off (PTO) per year. Unused PTO does not roll over to the next year. Employees must request PTO at least two weeks in advance for any leave exceeding 3 days."
-  },
-  {
-    "id": "doc_company_product_01",
-    "text": "The SuperWidget 2000 features a titanium casing, 8 hours of battery life, and waterproof capability up to 50 meters. It supports Bluetooth 5.0 and Wi-Fi 6."
-  },
-  {
-    "id": "doc_company_history_01",
-    "text": "Acme Corp was founded in 1985 by Jane Doe and John Smith in their garage in Seattle. The company originally sold typewriter ribbons before pivoting to consumer electronics in 1998."
-  }
+    {
+        "id": "paris_001",
+        "text": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889."
+    },
+    {
+        "id": "china_001",
+        "text": "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe."
+    },
+    {
+        "id": "louvre_001",
+        "text": "The Louvre, or the Louvre Museum, is the world's most-visited museum and a historic monument in Paris, France. It is the home of some of the best-known works of art, including the Mona Lisa and the Venus de Milo."
+    },
+    {
+        "id": "space_001",
+        "text": "The Moon is Earth's only natural satellite. It is about one-quarter the diameter of Earth (comparable to the width of Australia)."
+    }
 ]
