@@ -44,14 +44,13 @@ sequenceDiagram
 
 ## Performance Benchmarks & Results
 
-The framework was benchmarked across 5 heterogeneous semantic domains using optimized 8B variants (Llama 3.1, Phi-3.5, Mistral Nemo, Gemma 2) via local Ollama orchestration.
+The framework was benchmarked across 5 heterogeneous semantic domains using optimized 8B variants (Llama 3.1, Phi-3.5, Gemma 2) via local Ollama orchestration.
 
 ### Global Multi-Model Comparison Matrix
 
 | Model Identifier | Precision (Baseline) | Precision (Improved) | $\Delta$ | Reliability Index ($\rho$) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Llama 3.1 (8B)** | 0.69 | 0.89 | **+20%** | 0.94 |
-| **Mistral Nemo (12B)** | 1.00 | 1.00 | +0% | 1.00 |
 | **Gemma 2 (9B)** | 0.85 | 0.96 | **+11%** | 0.98 |
 | **Phi-3.5 (3.8B)** | 0.75 | 0.78 | +3.1% | 0.89 |
 
@@ -98,7 +97,7 @@ pip install -r requirements.txt
 sh quickstart/setup.sh
 
 # 3. Execute standardized evaluation sweep
-python run_eval.py --local --models llama3.1 phi3.5 mistral-nemo gemma2
+python run_eval.py --local --models llama3.1 phi3.5 gemma2
 ```
 
 ### Analytics Dashboard
